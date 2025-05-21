@@ -4,12 +4,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WOW Video Test</title>
+    <title>WOW Video Test - v2</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="https://hyundai.innoceanusa.com/2023/studio/fonts/hyundai-github-fonts.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-v2.css">
 
   </head>
 
@@ -49,16 +49,41 @@
           <g id="efp2iWH1Ttr6_ts" transform="translate(75,75) scale(0.1,0.1)"><ellipse id="efp2iWH1Ttr6" rx="75" ry="75" transform="translate(0,0)" opacity="0" fill="none" stroke="#fff" stroke-width="2"/></g><g id="efp2iWH1Ttr7_ts" transform="translate(75,75) scale(0.1,0.1)"><ellipse id="efp2iWH1Ttr7" rx="75" ry="75" transform="translate(0,0)" opacity="0" fill="none" stroke="#fff" stroke-width="2"/></g>
         </svg>
 
-        <!-- volume controls -->
+      <span  class="tooltiptext"></span >
+      <svg version="1.0" class="play-pause" xmlns="http://www.w3.org/2000/svg" version="1.0" width="30" height="30" viewBox="0 0 30 30">
+        <style type="text/css">
+          .st2{fill:#EEEEEE;}
+        </style>
 
-          <svg xmlns="http://www.w3.org/2000/svg" id="audio-speaker" version="1.0" width="30" height="30" viewBox="0 0 75 75">
-            <path d="M39.389,13.769 L22.235,28.606 L6,28.606 L6,47.699 L21.989,47.699 L39.389,62.75 L39.389,13.769z" style="stroke:#eee;stroke-width:2;stroke-linejoin:round;fill:#eee;"></path>
-            <path d="M48,27.6a19.5,19.5 0 0 1 0,21.4M55.1,20.5a30,30 0 0 1 0,35.6M61.6,14a38.8,38.8 0 0 1 0,48.6"  style="fill:none;stroke:#eee;stroke-width:3;stroke-linecap:round"></path> 
+        <g class="pause">
+          <rect x="7.4" y="5.8" class="st2" width="4.7" height="19.2"/>
+          <rect x="17.9" y="5.8" class="st2" width="4.7" height="19.2"/>
+        </g>
+        
+        <g class="play opacity-0">
+          <polygon class="st2" points="5.2,5.8 5.2,25 24.4,15.3   "/>
+        </g>
+        
+        <rect x="4.1" y="5" style="stroke:none;fill:#E5FF0000;"  width="21.2" height="21.2"/>
+       
+      </svg>
+
+
+        <!-- volume control -->
+
+          <svg xmlns="http://www.w3.org/2000/svg" class="audio-speaker" version="1.0" width="30" height="30" viewBox="0 0 75 75">
+
+            <path class="speaker" d="M39.389,13.769 L22.235,28.606 L6,28.606 L6,47.699 L21.989,47.699 L39.389,62.75 L39.389,13.769z" style="stroke:#eee;stroke-width:2;stroke-linejoin:round;fill:#eee;"></path>
+            <path data-id="waves" class="opacity-0" d="M48,27.6a19.5,19.5 0 0 1 0,21.4M55.1,20.5a30,30 0 0 1 0,35.6M61.6,14a38.8,38.8 0 0 1 0,48.6"  style="fill:none;stroke:#eee;stroke-width:3;stroke-linecap:round"></path> 
+            <rect id="audio-speaker-fill"  style="stroke:none;fill:#E5FF0000;" x="0" width="75" height="75"/>
           </svg>
-          <input id="audio-levels"  class="opacity-0" type="range" min="0" max="100" value="50" oninput="volumeChange(this.value)"/>
 
+          <div class="audio-levels-container">
+            <input class="audio-levels opacity-0" type="range" min="0" max="100" value="50" oninput="volumeChange(this.value)"/>
+          </div>
 
-
+        <!-- video -->
+        <div class="gradientOverlay"></div>
         <video  src="videos/youtube-raindropsleaves-16x9.mp4" data-id="1" data-video-type="wow" data-volume="0" muted autoplay loop> </video>
       </div>
       
@@ -88,6 +113,38 @@
 
           <g id="efp2iWH1Ttr6_ts" transform="translate(75,75) scale(0.1,0.1)"><ellipse id="efp2iWH1Ttr6" rx="75" ry="75" transform="translate(0,0)" opacity="0" fill="none" stroke="#fff" stroke-width="2"/></g><g id="efp2iWH1Ttr7_ts" transform="translate(75,75) scale(0.1,0.1)"><ellipse id="efp2iWH1Ttr7" rx="75" ry="75" transform="translate(0,0)" opacity="0" fill="none" stroke="#fff" stroke-width="2"/></g>
         </svg>
+        <span  class="tooltiptext"></span >
+        <svg version="1.0" class="play-pause" xmlns="http://www.w3.org/2000/svg" version="1.0" width="30" height="30" viewBox="0 0 30 30">
+          <style type="text/css">
+            .st2{fill:#EEEEEE;}
+          </style>
+
+          <g class="pause">
+            <rect x="7.4" y="5.8" class="st2" width="4.7" height="19.2"/>
+            <rect x="17.9" y="5.8" class="st2" width="4.7" height="19.2"/>
+          </g>
+          
+          <g class="play opacity-0">
+            <polygon class="st2" points="5.2,5.8 5.2,25 24.4,15.3   "/>
+          </g>
+          
+          <rect x="4.1" y="5" style="stroke:none;fill:#E5FF0000;"  width="21.2" height="21.2"/>
+        </svg>
+
+        <!-- volume control -->
+
+          <svg xmlns="http://www.w3.org/2000/svg" class="audio-speaker" version="1.0" width="30" height="30" viewBox="0 0 75 75">
+
+            <path class="speaker" d="M39.389,13.769 L22.235,28.606 L6,28.606 L6,47.699 L21.989,47.699 L39.389,62.75 L39.389,13.769z" style="stroke:#eee;stroke-width:2;stroke-linejoin:round;fill:#eee;"></path>
+            <path data-id="waves" class="opacity-0" d="M48,27.6a19.5,19.5 0 0 1 0,21.4M55.1,20.5a30,30 0 0 1 0,35.6M61.6,14a38.8,38.8 0 0 1 0,48.6"  style="fill:none;stroke:#eee;stroke-width:3;stroke-linecap:round"></path> 
+            <rect id="audio-speaker-fill"  style="stroke:none;fill:#E5FF0000;" x="0" width="75" height="75"/>
+          </svg>
+
+          <div class="audio-levels-container">
+            <input class="audio-levels opacity-0" type="range" min="0" max="100" value="50" oninput="volumeChange(this.value)"/>
+          </div>
+
+        <!-- video -->
         <video  src="videos/youtube-firefighters-16x9.mp4" data-id="2" data-video-type="wow" data-volume="0" muted autoplay loop> </video>
       </div> 
       <div class="content-large"></div>
@@ -114,6 +171,38 @@
 
           <g id="efp2iWH1Ttr6_ts" transform="translate(75,75) scale(0.1,0.1)"><ellipse id="efp2iWH1Ttr6" rx="75" ry="75" transform="translate(0,0)" opacity="0" fill="none" stroke="#fff" stroke-width="2"/></g><g id="efp2iWH1Ttr7_ts" transform="translate(75,75) scale(0.1,0.1)"><ellipse id="efp2iWH1Ttr7" rx="75" ry="75" transform="translate(0,0)" opacity="0" fill="none" stroke="#fff" stroke-width="2"/></g>
         </svg>
+        <span  class="tooltiptext"></span >
+        <svg version="1.0" class="play-pause" xmlns="http://www.w3.org/2000/svg" version="1.0" width="30" height="30" viewBox="0 0 30 30">
+          <style type="text/css">
+            .st2{fill:#EEEEEE;}
+          </style>
+
+          <g class="pause">
+            <rect x="7.4" y="5.8" class="st2" width="4.7" height="19.2"/>
+            <rect x="17.9" y="5.8" class="st2" width="4.7" height="19.2"/>
+          </g>
+          
+          <g class="play opacity-0">
+            <polygon class="st2" points="5.2,5.8 5.2,25 24.4,15.3   "/>
+          </g>
+          
+          <rect x="4.1" y="5" style="stroke:none;fill:#E5FF0000;"  width="21.2" height="21.2"/>
+       
+        </svg>
+        <!-- volume control -->
+
+          <svg xmlns="http://www.w3.org/2000/svg" class="audio-speaker" version="1.0" width="30" height="30" viewBox="0 0 75 75">
+
+            <path class="speaker" d="M39.389,13.769 L22.235,28.606 L6,28.606 L6,47.699 L21.989,47.699 L39.389,62.75 L39.389,13.769z" style="stroke:#eee;stroke-width:2;stroke-linejoin:round;fill:#eee;"></path>
+            <path data-id="waves" class="opacity-0" d="M48,27.6a19.5,19.5 0 0 1 0,21.4M55.1,20.5a30,30 0 0 1 0,35.6M61.6,14a38.8,38.8 0 0 1 0,48.6"  style="fill:none;stroke:#eee;stroke-width:3;stroke-linecap:round"></path> 
+            <rect id="audio-speaker-fill"  style="stroke:none;fill:#E5FF0000;" x="0" width="75" height="75"/>
+          </svg>
+
+          <div class="audio-levels-container">
+            <input class="audio-levels opacity-0" type="range" min="0" max="100" value="50" oninput="volumeChange(this.value)"/>
+          </div>
+
+        <!-- video -->
         <video  src="videos/youtube-rollercoaster-16x9.mp4" data-id="3" data-video-type="wow" data-volume="0" muted autoplay loop> </video>
       </div>
       
@@ -141,13 +230,46 @@
 
           <g id="efp2iWH1Ttr6_ts" transform="translate(75,75) scale(0.1,0.1)"><ellipse id="efp2iWH1Ttr6" rx="75" ry="75" transform="translate(0,0)" opacity="0" fill="none" stroke="#fff" stroke-width="2"/></g><g id="efp2iWH1Ttr7_ts" transform="translate(75,75) scale(0.1,0.1)"><ellipse id="efp2iWH1Ttr7" rx="75" ry="75" transform="translate(0,0)" opacity="0" fill="none" stroke="#fff" stroke-width="2"/></g>
         </svg>
+        <span  class="tooltiptext"></span >
+        <svg version="1.0" class="play-pause" xmlns="http://www.w3.org/2000/svg" version="1.0" width="30" height="30" viewBox="0 0 30 30">
+          <style type="text/css">
+            .st2{fill:#EEEEEE;}
+          </style>
+
+          <g class="pause">
+            <rect x="7.4" y="5.8" class="st2" width="4.7" height="19.2"/>
+            <rect x="17.9" y="5.8" class="st2" width="4.7" height="19.2"/>
+          </g>
+          
+          <g class="play opacity-0">
+            <polygon class="st2" points="5.2,5.8 5.2,25 24.4,15.3   "/>
+          </g>
+          
+          <rect x="4.1" y="5" style="stroke:none;fill:#E5FF0000;"  width="21.2" height="21.2"/>
+       
+        </svg>
+
+        <!-- volume control -->
+
+          <svg xmlns="http://www.w3.org/2000/svg" class="audio-speaker" version="1.0" width="30" height="30" viewBox="0 0 75 75">
+
+            <path class="speaker" d="M39.389,13.769 L22.235,28.606 L6,28.606 L6,47.699 L21.989,47.699 L39.389,62.75 L39.389,13.769z" style="stroke:#eee;stroke-width:2;stroke-linejoin:round;fill:#eee;"></path>
+            <path data-id="waves" class="opacity-0" d="M48,27.6a19.5,19.5 0 0 1 0,21.4M55.1,20.5a30,30 0 0 1 0,35.6M61.6,14a38.8,38.8 0 0 1 0,48.6"  style="fill:none;stroke:#eee;stroke-width:3;stroke-linecap:round"></path> 
+            <rect id="audio-speaker-fill"  style="stroke:none;fill:#E5FF0000;" x="0" width="75" height="75"/>
+          </svg>
+
+          <div class="audio-levels-container">
+            <input class="audio-levels opacity-0" type="range" min="0" max="100" value="50" oninput="volumeChange(this.value)"/>
+          </div>
+
+        <!-- video -->
         <video  src="videos/youtube-copymachine-16x9.mp4" data-id="4" data-video-type="wow" data-volume="0" muted autoplay loop> </video>
       </div>
       
       <div class="content-large"></div>
     </div>
 
-    <script src="js/app.js"></script>
+    <script src="js/app-v2.js"></script>
   </body>
 
 </html>

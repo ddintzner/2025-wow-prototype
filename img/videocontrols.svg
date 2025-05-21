@@ -1,0 +1,22 @@
+
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
+	<style type="text/css">
+		.st0{display:none;}
+		.st1{display:inline;}
+		.st2{fill:#EEEEEE;}
+		.st3{display:inline;fill:#FFBC00;}
+	</style>
+	<g class="st0">
+		<g class="pause st1">
+			<rect x="5.4" y="5.8" class="st2" width="4.7" height="19.2"/>
+			<rect x="19.9" y="5.8" class="st2" width="4.7" height="19.2"/>
+		</g>
+	</g>
+	<g class="play">
+		<polygon class="st2" points="5.2,5.8 5.2,25 24.4,15.3 	"/>
+	</g>
+	<g class="hit" class="st0">
+		<rect x="4.1" y="5" class="st3" width="21.2" height="21.2"/>
+	</g>
+</svg>

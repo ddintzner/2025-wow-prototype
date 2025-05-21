@@ -14,10 +14,10 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 
 
-
-if (typeof params["volumebar"] !== 'undefined') {
-  // document.getElementById('content-audio-controls').style.display  = "flex";
+function isMobile() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
 }
+
 
 
 function getElementVisibility(element) {
@@ -61,8 +61,7 @@ videosWow.forEach(video => {
       //remove or add overlay graphics
       const videoAudioOverlay = videoRef.parentElement.querySelector('.videoAudioOverlay');
       const audioWaves = videoRef.parentElement.querySelector('[data-id="waves"]')
-      
-   
+    
 
       if(!videoRef.muted) {
         videoRef.muted = true
@@ -102,29 +101,31 @@ videosWow.forEach(video => {
 document.addEventListener("scroll", (event) => {
 
   videosWow.forEach(video => {
+    var videoID = video.getAttribute('data-id'); 
     const audioLevels = video.parentElement.querySelector('.audio-levels');
     audioLevels.classList.add('opacity-0');
 
     inViewport = getElementVisibility(video);
     video.volume = (inViewport * .01) * (volumeValue * .01) ;
 
-
     const playButton = video.parentElement.querySelector('.play');
     const isVideoPlaying = playButton.classList.contains('opacity-0');
 
-    //console.log("isVideoPlaying: ", isVideoPlaying);
-    
-    if(isVideoPlaying) {
+    //if the user has not paused the video and we are in view then play....
+    if(isVideoPlaying && inViewport > 0) {
       video.play();
-    }    
+       console.log("video: ", videoID, " | play");
+    } else {
+      video.pause(); 
+      console.log("video: ", videoID, " | pause");
+    }  
 
   });
 
-
 });
 
-// VOLUME CONTROL 
 
+// VOLUME CONTROL 
 
 function volumeChange(value) {
 
@@ -151,8 +152,11 @@ function volumeChange(value) {
 
 Array.from(playPauses).forEach(playPause => {
 
-  //show tooltip
-  playPause.addEventListener('mouseover', (event) => { 
+  //don't show on mobile
+  if(!isMobile()) {
+
+    //show tooltip
+    playPause.addEventListener('mouseover', (event) => { 
 
     const playButton = event.currentTarget.querySelector('.play');
     const isVideoPlaying = playButton.classList.contains('opacity-0');
@@ -165,51 +169,57 @@ Array.from(playPauses).forEach(playPause => {
     showTipText.classList.add('visibility');
 
 
-  });
+    });
 
-  //move tooltip
-  playPause.addEventListener('mousemove', (event) => {
+    //move tooltip
+    playPause.addEventListener('mousemove', (event) => {
 
-    const playButton = event.currentTarget.querySelector('.play');
-    const isVideoPlaying = playButton.classList.contains('opacity-0');
+      const playButton = event.currentTarget.querySelector('.play');
+      const isVideoPlaying = playButton.classList.contains('opacity-0');
 
-    const copyTipText = isVideoPlaying ? "Pause" : "Play";
-    const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
-    showTipText.textContent  = copyTipText;
+      const copyTipText = isVideoPlaying ? "Pause" : "Play";
+      const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
+      showTipText.textContent  = copyTipText;
 
-    const video = event.currentTarget.parentElement.querySelector('[data-video-type="wow"]');
+      const video = event.currentTarget.parentElement.querySelector('[data-video-type="wow"]');
 
-    const rect = video.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-
-    showTipText.style.top =  (y + 20) + 'px';
-    showTipText.style.left =  (x - 50) + 'px';
+      const rect = video.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
 
 
-  });
+      showTipText.style.top =  (y + 20) + 'px';
+      showTipText.style.left =  (x - 50) + 'px';
 
-  //hide tooltip
-  playPause.addEventListener('mouseout', (event) => { 
+    });
 
-    const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
-    showTipText.classList.remove('visibility');
 
-  });
+    //hide tooltip
+    playPause.addEventListener('mouseout', (event) => { 
 
+      const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
+      showTipText.classList.remove('visibility');
+      
+    });
+
+  }
+
+  
 
   playPause.addEventListener('click', (event) => { 
 
+
     const playButton = event.currentTarget.querySelector('.play');
     const isVideoPlaying = playButton.classList.contains('opacity-0');
 
-    console.log("isVideoPlaying: " + isVideoPlaying);
+    //don't show on mobile
+    if (!isMobile()) { 
 
-    const copyTipText = isVideoPlaying ? "Play" : "Pause";
-    const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
-    showTipText.textContent  = copyTipText;
+      const copyTipText = isVideoPlaying ? "Play" : "Pause";
+      const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
+      showTipText.textContent  = copyTipText;
 
+    }
 
     //update each
     videosWow.forEach(videoRef => {
@@ -234,8 +244,11 @@ Array.from(playPauses).forEach(playPause => {
         videoRef.muted = true
         videoAudioOverlay.classList.remove('opacity-0');
         audioWaves.classList.add('opacity-0');
-        audioLevels.classList.add('opacity-0')
 
+        //don't show on mobile
+        if (!isMobile()) {
+          audioLevels.classList.add('opacity-0')
+        }
       } else {
         videoRef.play();
         videoAudioOverlay.classList.add('opacity-0');
@@ -244,8 +257,11 @@ Array.from(playPauses).forEach(playPause => {
 
         videoRef.muted = false
         videoAudioOverlay.classList.add('opacity-0');
-        audioWaves.classList.remove('opacity-0');
-        // audioLevels.classList.remove('opacity-0');
+
+        //don't show on mobile
+        if (!isMobile()) {
+          audioLevels.classList.remove('opacity-0')
+        }
       }
       
     }); 
@@ -256,52 +272,80 @@ Array.from(playPauses).forEach(playPause => {
 
 Array.from(audioSpeakers).forEach(audioSpeaker => {
 
-//show tooltip
-  audioSpeaker.addEventListener('mouseover', (event) => { 
+  //don't show on mobile
+  if (!isMobile()) { 
 
-    const video = event.currentTarget.parentElement.querySelector('[data-video-type="wow"]');
-    const copyTipText = video.muted ? "Unmute" : "Mute";
-    const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
-    showTipText.textContent  = copyTipText;
+    //show tooltip
+    audioSpeaker.addEventListener('mouseover', (event) => { 
 
-    showTipText.classList.add('visibility');
+      //don't show on mobile
+      if (!isMobile()) { 
 
+        const video = event.currentTarget.parentElement.querySelector('[data-video-type="wow"]');
+        const copyTipText = video.muted ? "Unmute" : "Mute";
+        const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
+        showTipText.textContent  = copyTipText;
 
-  });
+        showTipText.classList.add('visibility');
 
-  // //move tooltip
-  audioSpeaker.addEventListener('mousemove', (event) => {
+      }
 
-    const video = event.currentTarget.parentElement.querySelector('[data-video-type="wow"]');
-    const copyTipText = video.muted ? "Unmute" : "Mute";
-    const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
-    showTipText.textContent  = copyTipText;
+    });
 
-    const rect = video.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    // //move tooltip
+    audioSpeaker.addEventListener('mousemove', (event) => {
 
-    showTipText.style.top =  (y + 20) + 'px';
-    showTipText.style.left =  (x - 50) + 'px';
+      //don't show on mobile
+      if (!isMobile()) {  
+      const video = event.currentTarget.parentElement.querySelector('[data-video-type="wow"]');
+      const copyTipText = video.muted ? "Unmute" : "Mute";
+      const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
+      showTipText.textContent  = copyTipText;
 
-  });
+      const rect = video.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
 
-  //hide tooltip
-  audioSpeaker.addEventListener('mouseout', (event) => { 
+      showTipText.style.top =  (y + 20) + 'px';
+      showTipText.style.left =  (x - 50) + 'px';
+      }
+    });
 
-    const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
-    showTipText.classList.remove('visibility');
+    //hide tooltip
+    audioSpeaker.addEventListener('mouseout', (event) => { 
 
-  });
+      //don't show on mobile
+      if (!isMobile()) {  
+      const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
+      showTipText.classList.remove('visibility');
+      }
+
+    });
+
+    audioSpeaker.addEventListener('mouseover', (event) => { 
+    
+      const audioWaves = event.currentTarget.querySelector('[data-id="waves"]')
+      const audioLevels = event.currentTarget.parentElement.querySelector('.audio-levels');
+      let mute = audioWaves.classList.contains('opacity-0');
+
+      audioLevels.classList.remove('opacity-0');
+    
+    });
+
+  }
 
 
   audioSpeaker.addEventListener('click', (event) => { 
 
-    //update tooltip on click
-    const video = event.currentTarget.parentElement.querySelector('[data-video-type="wow"]');
-    const copyTipText = video.muted ? "Mute" : "Unmute";
-    const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
-    showTipText.textContent  = copyTipText;
+    //don't show on mobile
+    if (!isMobile()) { 
+
+      //update tooltip on click
+      const video = event.currentTarget.parentElement.querySelector('[data-video-type="wow"]');
+      const copyTipText = video.muted ? "Mute" : "Unmute";
+      const showTipText = event.currentTarget.parentElement.querySelector('.tooltiptext');
+      showTipText.textContent  = copyTipText;
+    }
 
     //update each
     videosWow.forEach(videoRef => {
@@ -327,13 +371,16 @@ Array.from(audioSpeakers).forEach(audioSpeaker => {
         videoRef.muted = false
         videoAudioOverlay.classList.add('opacity-0');
         audioWaves.classList.remove('opacity-0');
+
+        //don't show on mobile
+        if (!isMobile()) { 
         audioLevels.classList.remove('opacity-0');
+        }
 
         videoRef.play();
         videoAudioOverlay.classList.add('opacity-0');
         playButton.classList.add('opacity-0');
         pauseButton.classList.remove('opacity-0');
-
 
       }
       
@@ -343,20 +390,7 @@ Array.from(audioSpeakers).forEach(audioSpeaker => {
 
 
 
-  audioSpeaker.addEventListener('mouseover', (event) => { 
-    
-    const audioWaves = event.currentTarget.querySelector('[data-id="waves"]')
-    const audioLevels = event.currentTarget.parentElement.querySelector('.audio-levels');
-    let mute = audioWaves.classList.contains('opacity-0');
 
-
-    //if we are not muted then show the volume slider
-    if (!mute) {
-      audioLevels.classList.remove('opacity-0');
-    }
-    
-    
-  });
 
 
 });
